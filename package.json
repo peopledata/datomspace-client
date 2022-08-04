@@ -1,0 +1,28 @@
+{
+  "name": "datomspace-client",
+  "version": "1.0.0",
+  "description": "standalone datomspace RPC client ",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "dependencies": {
+    "datomspace-rpc": "^1.0.0",
+    "call-me-maybe": "^1.0.1",
+    "codecs": "^2.1.0",
+    "freemap": "^1.0.0",
+    "datom-streams": "^1.0.0",
+    "inspect-custom-symbol": "^1.1.1",
+    "nanoresource-promise": "^1.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peopledata/datomspace-client.git"
+  },
+  "author": "jerry.zhang <jerry.zhang.bill@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peopledata/datomspace-client/issues"
+  },
+  "homepage": "https://github.com/peopledata/datomspace-client#readme"
+}

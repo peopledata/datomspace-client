@@ -4,7 +4,7 @@ const codecs = require('codecs')
 const inspect = require('inspect-custom-symbol')
 const FreeMap = require('freemap')
 const { WriteStream, ReadStream } = require('datom-streams')
-const PROMISES = Symbol.for('datoms.promises')
+const PROMISES = Symbol.for('datom.promises')
 
 const { NanoresourcePromise: Nanoresource } = require('nanoresource-promise/emitter')
 const HRPC = require('datomspace-rpc')
@@ -43,7 +43,7 @@ class RemoteCorestore extends EventEmitter {
     this._sessions = opts.sessions || new Sessions()
     this._feeds = new Map()
 
-    this._client.datoms.onRequest(this, {
+    this._client.datom.onRequest(this, {
       onAppend ({ id, length, byteLength }) {
         const remoteCore = this._sessions.get(id)
         if (!remoteCore) throw new Error('Invalid Remotedatoms ID.')
@@ -448,7 +448,7 @@ class Remotedatoms extends Nanoresource {
   }
 
   async _close () {
-    await this._client.datoms.close({ id: this._id })
+    await this._client.datom.close({ id: this._id })
     this._sessions.delete(this._id)
     this.emit('close')
   }
@@ -518,7 +518,7 @@ class Remotedatoms extends Nanoresource {
 
     if (!Array.isArray(blocks)) blocks = [blocks]
     if (this.valueEncoding) blocks = blocks.map(b => this.valueEncoding.encode(b))
-    const rsp = await this._client.datoms.append({
+    const rsp = await this._client.datom.append({
       id: this._id,
       blocks
     })
@@ -536,7 +536,7 @@ class Remotedatoms extends Nanoresource {
     let rsp
 
     try {
-      rsp = await this._client.datoms.get({
+      rsp = await this._client.datom.get({
         ...opts,
         seq,
         id: this._id,
